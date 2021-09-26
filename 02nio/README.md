@@ -6,4 +6,4 @@
 
 6.（必做）写一段代码，使用 HttpClient 或 OkHttp 访问  http://localhost:8801 ，代码提交到 GitHub
 
-* 位置：[]()
+* 位置：[myhttpclient目录](./myhttpclient/)
