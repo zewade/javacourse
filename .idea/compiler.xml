@@ -7,11 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring08" />
         <module name="myclassloader" />
+        <module name="homework-spring02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="homework-spring02" target="8" />
       <module name="myclassloader" target="8" />
+      <module name="spring08" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring08" options="-parameters" />
+    </option>
   </component>
 </project>
