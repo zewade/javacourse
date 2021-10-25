@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/javacourse.iml" filepath="$PROJECT_DIR$/.idea/javacourse.iml" />
       <module fileurl="file://$PROJECT_DIR$/01jvm/myclassloader/myclassloader.iml" filepath="$PROJECT_DIR$/01jvm/myclassloader/myclassloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/05spring/08/spring08/spring08.iml" filepath="$PROJECT_DIR$/05spring/08/spring08/spring08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05spring/10/spring10/spring10.iml" filepath="$PROJECT_DIR$/05spring/10/spring10/spring10.iml" />
     </modules>
   </component>
 </project>
