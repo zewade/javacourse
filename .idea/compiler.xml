@@ -10,11 +10,13 @@
         <module name="spring10" />
         <module name="spring08" />
         <module name="myclassloader" />
+        <module name="InsertDataTest" />
         <module name="homework-spring02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="homework-spring02" target="8" />
+      <module name="InsertDataTest" target="1.8" />
       <module name="myclassloader" target="8" />
       <module name="spring08" target="1.8" />
       <module name="spring10" target="1.8" />
@@ -22,6 +24,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="InsertDataTest" options="-parameters" />
       <module name="spring08" options="-parameters" />
       <module name="spring10" options="-parameters" />
     </option>
