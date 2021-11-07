@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/07mysql/AbstractDatasource/AbastractDatasource.iml" filepath="$PROJECT_DIR$/07mysql/AbstractDatasource/AbastractDatasource.iml" />
       <module fileurl="file://$PROJECT_DIR$/07mysql/InsertDataTest/InsertDataTest.iml" filepath="$PROJECT_DIR$/07mysql/InsertDataTest/InsertDataTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07mysql/ShardingJdbcReadWriteSplit/ShardingJdbcReadWriteSplit.iml" filepath="$PROJECT_DIR$/07mysql/ShardingJdbcReadWriteSplit/ShardingJdbcReadWriteSplit.iml" />
       <module fileurl="file://$PROJECT_DIR$/05spring/02/spring02/homework-spring02.iml" filepath="$PROJECT_DIR$/05spring/02/spring02/homework-spring02.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/javacourse.iml" filepath="$PROJECT_DIR$/.idea/javacourse.iml" />
       <module fileurl="file://$PROJECT_DIR$/01jvm/myclassloader/myclassloader.iml" filepath="$PROJECT_DIR$/01jvm/myclassloader/myclassloader.iml" />

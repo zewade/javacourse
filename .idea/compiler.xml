@@ -7,24 +7,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring10" />
         <module name="spring08" />
-        <module name="myclassloader" />
         <module name="InsertDataTest" />
+        <module name="spring10" />
+        <module name="ShardingJdbcReadWriteSplit" />
+        <module name="myclassloader" />
+        <module name="AbastractDatasource" />
         <module name="homework-spring02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AbastractDatasource" target="1.8" />
       <module name="homework-spring02" target="8" />
       <module name="InsertDataTest" target="1.8" />
       <module name="myclassloader" target="8" />
+      <module name="ShardingJdbcReadWriteSplit" target="1.8" />
       <module name="spring08" target="1.8" />
       <module name="spring10" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AbastractDatasource" options="-parameters" />
       <module name="InsertDataTest" options="-parameters" />
+      <module name="ShardingJdbcReadWriteSplit" options="-parameters" />
       <module name="spring08" options="-parameters" />
       <module name="spring10" options="-parameters" />
     </option>

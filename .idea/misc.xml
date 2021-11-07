@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/05spring/08/spring08/pom.xml" />
         <option value="$PROJECT_DIR$/05spring/10/spring10/pom.xml" />
         <option value="$PROJECT_DIR$/07mysql/InsertDataTest/pom.xml" />
+        <option value="$PROJECT_DIR$/07mysql/ShardingJdbcReadWriteSplit/pom.xml" />
+        <option value="$PROJECT_DIR$/07mysql/AbstractDatasource/pom.xml" />
       </list>
     </option>
   </component>
