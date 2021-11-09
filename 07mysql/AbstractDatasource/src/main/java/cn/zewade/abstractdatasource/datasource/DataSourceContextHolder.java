@@ -1,4 +1,4 @@
-package cn.zewade.abastractdatasource.datasource;
+package cn.zewade.abstractdatasource.datasource;
 
 import lombok.extern.slf4j.Slf4j;
 

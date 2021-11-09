@@ -1,22 +1,24 @@
-package cn.zewade.abastractdatasource.datasource;
+package cn.zewade.abstractdatasource.datasource;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.PriorityOrdered;
+import org.springframework.stereotype.Component;
 
 @Aspect
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
+@Component
 public class DataSourceAopAspect implements PriorityOrdered {
 
-    @Before("execution(* cn.zewade.abastractdatasource.datasource.service.*.*(..)) "
-            + " && @annotation(cn.zewade.abastractdatasource.datasource.annotation.ReadDataSource) ")
+    @Before("execution(* cn.zewade.abstractdatasource.ReadWriteTestService.*(..)) "
+            + " && @annotation(cn.zewade.abstractdatasource.datasource.annotation.ReadDataSource) ")
     public void setReadDataSourceType() {
         //如果已经开启写事务了，那之后的所有读都从写库读
         DataSourceContextHolder.setRead();
     }
-    @Before("execution(* cn.zewade.abastractdatasource.datasource.service.*.*(..)) "
-            + " && @annotation(cn.zewade.abastractdatasource.datasource.annotation.WriteDataSource) ")
+    @Before("execution(* cn.zewade.abstractdatasource.ReadWriteTestService.*(..)) "
+            + " && @annotation(cn.zewade.abstractdatasource.datasource.annotation.WriteDataSource) ")
     public void setWriteDataSourceType() {
         DataSourceContextHolder.setWrite();
     }

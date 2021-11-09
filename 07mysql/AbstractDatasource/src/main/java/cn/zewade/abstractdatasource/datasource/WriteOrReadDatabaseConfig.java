@@ -1,6 +1,6 @@
-package cn.zewade.abastractdatasource.datasource;
+package cn.zewade.abstractdatasource.datasource;
 
-import com.zaxxer.hikari.HikariDataSource;
+import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,14 +17,14 @@ public class WriteOrReadDatabaseConfig {
     @Primary
     @Bean(name = "writeDataSource", destroyMethod = "close")
     @ConfigurationProperties(prefix = "course.write")
-    public HikariDataSource writeDataSource() {
-        return new HikariDataSource();
+    public DataSource writeDataSource() {
+        return new DruidDataSource();
     }
 
     @Bean(name = "readDataSource", destroyMethod = "close")
     @ConfigurationProperties(prefix = "course.read")
-    public HikariDataSource readDataSource() {
-        return new HikariDataSource();
+    public DataSource readDataSource() {
+        return new DruidDataSource();
     }
 
     // 事务管理
