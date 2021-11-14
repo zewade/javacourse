@@ -21,7 +21,7 @@ public class InsertDataTestService {
     @Autowired
     DataSource dataSource;
     
-    private List<Map<String, Object>> testDataMap = genTestData(100_0000);
+    private List<Map<String, Object>> testDataMap = genTestData(1000);
     
     private static final String ORDER_ID = "ORDER_ID";
     private static final String USER_ID = "USER_ID";
@@ -119,32 +119,33 @@ public class InsertDataTestService {
             conn = dataSource.getConnection();
             conn.setAutoCommit(false);
             String sql = "insert buyer_order values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            int count = 0;
             pst = conn.prepareStatement(sql);
-            for (Map<String, Object> data : testDataMap) {
-                count++;
-                pst.setObject(1, data.get(ORDER_ID));
-                pst.setObject(2, data.get(USER_ID));
-                pst.setObject(3, data.get(ADDRESS_ID));
-                pst.setObject(4, data.get(COUPON_ID));
-                pst.setObject(5, data.get(TOTAL_PRICE));
-                pst.setObject(6, data.get(COUPON_PRICE));
-                pst.setObject(7, data.get(PAYABLE_PRICE));
-                pst.setObject(8, data.get(PAY_METHOD));
-                pst.setObject(9, data.get(INVOICE_TPL_ID));
-                pst.setObject(10, data.get(LEAVE_COMMENT));
-                pst.setObject(11, data.get(ORDER_STATUS));
-                pst.setObject(12, data.get(CREATED_BY));
-                pst.setObject(13, data.get(CREATED_TIME));
-                pst.setObject(14, data.get(CREATED_BY));
-                pst.setObject(15, data.get(CREATED_TIME));
-                pst.addBatch();
-                if (count == 10000) {
-                    conn.commit();
-                    count = 0;
+            for (int i=0;i<1000;i++) {
+                List<Map<String, Object>> testData = genTestData(10000);
+                for (Map<String, Object> data : testData) {
+                    pst.setObject(1, data.get(ORDER_ID));
+                    pst.setObject(2, data.get(USER_ID));
+                    pst.setObject(3, data.get(ADDRESS_ID));
+                    pst.setObject(4, data.get(COUPON_ID));
+                    pst.setObject(5, data.get(TOTAL_PRICE));
+                    pst.setObject(6, data.get(COUPON_PRICE));
+                    pst.setObject(7, data.get(PAYABLE_PRICE));
+                    pst.setObject(8, data.get(PAY_METHOD));
+                    pst.setObject(9, data.get(INVOICE_TPL_ID));
+                    pst.setObject(10, data.get(LEAVE_COMMENT));
+                    pst.setObject(11, data.get(ORDER_STATUS));
+                    pst.setObject(12, data.get(CREATED_BY));
+                    pst.setObject(13, data.get(CREATED_TIME));
+                    pst.setObject(14, data.get(CREATED_BY));
+                    pst.setObject(15, data.get(CREATED_TIME));
+                    pst.addBatch();
                 }
+                pst.executeBatch();
+                conn.commit();
+                pst.clearBatch();
+                System.out.println("Finished:" + (i+1));
             }
-            conn.commit();
+//            conn.commit();
         } finally {
             if (pst != null)
                 pst.close();
