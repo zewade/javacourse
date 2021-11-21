@@ -50,8 +50,10 @@ public final class Rpcfx {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().addLast(new HttpResponseDecoder());
-                        socketChannel.pipeline().addLast(new HttpRequestEncoder());
+//                        socketChannel.pipeline().addLast(new HttpResponseDecoder());
+//                        socketChannel.pipeline().addLast(new HttpRequestEncoder());
+                        socketChannel.pipeline().addLast(new HttpClientCodec());
+                        socketChannel.pipeline().addLast(new HttpObjectAggregator(1024 * 10 * 1024));
                         socketChannel.pipeline().addLast(clientHandler);
                     }
                 });
@@ -111,16 +113,17 @@ public final class Rpcfx {
 //                    .build();
 //            String respJson = client.newCall(request).execute().body().string();
 //            System.out.println("resp json: " + respJson);
+//            return JSON.parseObject(respJson, RpcfxResponse.class);
             try {
                 URI uri = new URI(url);
                 ChannelFuture cf = bootstrap.connect(uri.getHost(), uri.getPort()).sync();
 
-                DefaultFullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, uri.toASCIIString(),
+                DefaultFullHttpRequest request = new DefaultFullHttpRequest(HttpVersion.HTTP_1_0, HttpMethod.POST, uri.toASCIIString(),
                         Unpooled.wrappedBuffer(reqJson.getBytes(StandardCharsets.UTF_8)));
 
-                request.headers().set(HttpHeaders.Names.HOST, uri.getHost());
-                request.headers().set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
-                request.headers().set(HttpHeaders.Names.CONTENT_LENGTH, request.content().readableBytes());
+                request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                request.headers().set(HttpHeaderNames.HOST, uri.getHost());
+                request.headers().set(HttpHeaderNames.CONTENT_TYPE, JSONTYPE);
 
                 cf.channel().writeAndFlush(request);
                 cf.channel().closeFuture().sync();
@@ -133,7 +136,6 @@ public final class Rpcfx {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-//            return JSON.parseObject(respJson, RpcfxResponse.class);
             return null;
         }
 
@@ -142,7 +144,7 @@ public final class Rpcfx {
             System.out.println("AOP实现处理类");
 
             RpcfxRequest request = new RpcfxRequest();
-            request.setServiceClass(o.getClass().getName());
+            request.setServiceClass(o.getClass().getInterfaces()[0].getName());
             request.setMethod(method.getName());
             request.setParams(objects);
 
